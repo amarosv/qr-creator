@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR</title>
+    <link rel="stylesheet" href="css/codigoqr.css">
+    <script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="shortcut icon" href="assets/logo/logo.png" type="image/x-icon">
+</head>
+
+<body class="bg-dark text-white">
+
+    <!-- Menú -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/logo/logo.png" alt="Logo QR Creator" class="img-fluid" id="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Fin menú -->
+
+    <div class="container text-center">
+        <div class="row">
+            <div class="col mt-5">
+
+                <div class="text-start">
+                    <h1>Genera el Código QR</h1>
+                    <label for="url">Introduce la url:</label>
+                    <br>
+                    <input type="text" name="url" id="url">
+                    <br>
+                    <label for="logo">¿Quieres personalizarlo? Sube tu logo</label>
+                    <br>
+                    <div class="row">
+                        <div class="col">
+                            <input type="file" name="logo" accept="image/*" id="arc">
+                        </div>
+                        <div class="col">
+                            <button id="removeImg">Eliminar imagen</button>
+                        </div>
+                    </div>
+                    <br>
+                    <label for="pointColor">Elige el color de los punto</label>
+                    <br>
+                    <input type="color" name="pointColor" id="colorPicker">
+                    <br>
+                    <label for="ringColor">Elige el color de los anillos exteriores</label>
+                    <br>
+                    <input type="color" name="ringColor" id="colorPickerRing">
+                    <br>
+                    <label for="ringCenterColor">Elige el color de los anillos interiores</label>
+                    <br>
+                    <input type="color" name="ringCenterColor" id="colorPickerRingCenter">
+                    <br>
+                    <label for="background">Elige el color del fondo</label>
+                    <br>
+                    <input type="color" name="background" id="backgroundPicker" value="#ffffff">
+                    <br>
+                    <button id="generarBt">Generar</button>
+                </div>
+
+            </div>
+            <div class="col mt-5">
+                <div id="config"></div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="js/index.js"></script>
+
+</html>
