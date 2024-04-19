@@ -96,8 +96,8 @@ function gen() {
         var img = document.createElement('img')
         img.src = imageUrl
         img.setAttribute('slot', 'icon')
-        img.style.maxWidth = '80px'
-        img.style.maxHeight = '80px'
+        img.style.maxWidth = '60px'
+        img.style.maxHeight = '60px'
         qr.appendChild(img)
     }
 
