@@ -92,13 +92,16 @@ function gen() {
     qr.style.marginBottom = '1vh'
     qr.style.backgroundColor = colorPickerBg.value
     qr.style.borderRadius = '8px'
+    // qr.style.display = 'flex'
+    qr.style.justifyContent = 'center'
+    qr.style.alignItems = 'center'
 
     if (imageUrl) {
         var img = document.createElement('img')
         img.src = imageUrl
         img.setAttribute('slot', 'icon')
-        img.style.maxWidth = '60px'
-        img.style.maxHeight = '60px'
+        img.style.width = '56px'
+        img.style.height = '56px'
         qr.appendChild(img)
     }
 
