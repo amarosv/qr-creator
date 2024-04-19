@@ -103,6 +103,7 @@ function gen() {
         img.setAttribute('slot', 'icon')
         img.style.width = '86px'
         img.style.height = '86px'
+        img.style.margin = 'auto'
         qr.appendChild(img)
     }
 
