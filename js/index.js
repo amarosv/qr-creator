@@ -76,6 +76,7 @@ function gen() {
     if (document.getElementById('title') != null) document.getElementById('title').remove()
     if (document.getElementById('qr') != null) document.getElementById('qr').remove()
     if (document.getElementById('download') != null) document.getElementById('download').remove()
+    if (document.querySelector('#size') != null) document.querySelector('#size').remove()
 
     var qr = document.createElement('qr-code')
     qr.setAttribute('id', 'qr')
@@ -84,8 +85,8 @@ function gen() {
     qr.moduleColor = colorPicker.value
     qr.positionRingColor = colorPickerRing.value
     qr.positionCenterColor = colorPickerRingCenter.value
-    qr.style.height = '400px'
-    qr.style.width = '400px'
+    qr.style.height = '300px'
+    qr.style.width = '300px'
     qr.style.marginLeft = 'auto'
     qr.style.marginRight = 'auto'
     qr.style.marginTop = '1vh'
@@ -100,8 +101,8 @@ function gen() {
         var img = document.createElement('img')
         img.src = imageUrl
         img.setAttribute('slot', 'icon')
-        img.style.width = '56px'
-        img.style.height = '56px'
+        img.style.width = '46px'
+        img.style.height = '46px'
         qr.appendChild(img)
     }
 
@@ -123,20 +124,95 @@ function gen() {
     config.appendChild(qr)
     config.appendChild(downloadBtn)
 
-    downloadBtn.addEventListener('click', function () {
+    function optionSelected(n) {
         // Captura el contenido del qr-code como imagen
         html2canvas(qr).then(canvas => {
-            var imgData = canvas.toDataURL('image/png')
-            var fileName = urlDestino.replace('http://', '').replace('https://', '') + '.png'
+            var desiredWidth = 1200; // Ancho en píxeles
+            var desiredHeight = 1200; // Alto en píxeles
+
+            // Tamaño deseado para la imagen
+            switch (n) {
+                case 1:
+                    desiredWidth = 500;
+                    desiredHeight = 500;
+                    break;
+                case 2:
+                    desiredWidth = 1000;
+                    desiredHeight = 1000;
+                    break;
+                case 3:
+                    desiredWidth = 2000;
+                    desiredHeight = 2000;
+                    break;
+            }
+
+            // Crea un canvas temporal para redimensionar la imagen
+            var tempCanvas = document.createElement('canvas');
+            var tempContext = tempCanvas.getContext('2d');
+
+            // Habilita la interpolación de alta calidad
+            tempContext.imageSmoothingEnabled = true;
+
+            tempCanvas.width = desiredWidth;
+            tempCanvas.height = desiredHeight;
+
+            // Redimensiona la imagen al tamaño deseado
+            tempContext.drawImage(canvas, 0, 0, desiredWidth, desiredHeight);
+
+            // Convierte el canvas redimensionado a una URL de datos de imagen
+            var resizedImgData = tempCanvas.toDataURL('image/png');
+
+            // Nombre de archivo para la descarga
+            var fileName = urlDestino.replace('http://', '').replace('https://', '') + '.png';
 
             // Crea un enlace temporal para la descarga
-            var link = document.createElement('a')
-            link.href = imgData
-            link.download = fileName
+            var link = document.createElement('a');
+            link.href = resizedImgData;
+            link.download = fileName;
 
             // Simula un clic en el enlace para iniciar la descarga
-            link.click()
+            link.click();
+
         })
+    }
+
+    downloadBtn.addEventListener('click', function () {
+        if (document.querySelector('#size') != null) {
+            document.querySelector('#size').remove()
+        } else {
+            var div = document.createElement('div')
+            div.setAttribute('id', 'size')
+
+            var h1 = document.createElement('h1')
+            h1.innerHTML = 'Selecciona un tamaño'
+
+            var button1 = document.createElement('button')
+            button1.innerHTML = '500x500'
+            button1.style.marginBottom = '10px'
+            button1.addEventListener('click', function () {
+                optionSelected(1)
+            })
+
+            var button2 = document.createElement('button')
+            button2.innerHTML = '1000x1000'
+            button2.style.marginBottom = '10px'
+            button2.addEventListener('click', function () {
+                optionSelected(2)
+            })
+
+            var button3 = document.createElement('button')
+            button3.innerHTML = '2000x2000'
+            button3.addEventListener('click', function () {
+                optionSelected(3)
+            })
+
+            div.appendChild(h1)
+            div.appendChild(button1)
+            div.appendChild(button2)
+            div.appendChild(button3)
+
+            config.appendChild(div)
+        }
     })
 
     document.getElementById('qr').addEventListener('codeRendered', () => {
