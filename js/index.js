@@ -62,6 +62,7 @@ function gen() {
     var colorPickerRing = document.querySelector('#colorPickerRing')
     var colorPickerRingCenter = document.querySelector('#colorPickerRingCenter')
     var colorPickerBg = document.querySelector('#backgroundPicker')
+    url.placeholder = window.location.href
 
     var imageUrl = ''
     var urlDestino = url.value != '' ? url.value : window.location.href
