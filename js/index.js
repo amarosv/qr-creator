@@ -101,8 +101,8 @@ function gen() {
         var img = document.createElement('img')
         img.src = imageUrl
         img.setAttribute('slot', 'icon')
-        img.style.width = '46px'
-        img.style.height = '46px'
+        img.style.width = '86px'
+        img.style.height = '86px'
         qr.appendChild(img)
     }
 
@@ -114,7 +114,7 @@ function gen() {
     downloadBtn.style.borderRadius = '6px'
     downloadBtn.style.marginLeft = 'auto'
     downloadBtn.style.marginRight = 'auto'
-    downloadBtn.style.padding = '1vh'
+    // downloadBtn.style.padding = '1vh'
 
     var h1 = document.createElement('h1')
     h1.innerHTML = 'Tu Código QR'
